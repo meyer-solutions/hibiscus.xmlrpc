@@ -275,7 +275,7 @@ public class UmsatzServiceImpl extends AbstractServiceImpl implements UmsatzServ
       
       String eref = StringUtil.trimToNull(u.getEndToEndId());
       if (eref == null)
-        eref = VerwendungszweckUtil.getTag(u,Tag.EREF); // Falls es im Verwendungszweck steht - bei älteren Buchungen
+        eref = VerwendungszweckUtil.getTag(u,Tag.EREF); // Falls es im Verwendungszweck steht - bei Ã¤lteren Buchungen
       map.put(KEY_ENDTOENDID,        StringUtil.notNull(eref));
       
       List<String> usages = new ArrayList<String>();
@@ -284,6 +284,7 @@ public class UmsatzServiceImpl extends AbstractServiceImpl implements UmsatzServ
       String[] z3 = u.getWeitereVerwendungszwecke();
       if (z2 != null && z2.length() > 0) usages.add(z2);
       if (z3 != null && z3.length > 0)   usages.addAll(Arrays.asList(z3));
+      usages.add(StringUtil.notNull(eref));
       map.put(KEY_ZWECK_RAW,usages);
 
 
